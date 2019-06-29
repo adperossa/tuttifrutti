@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from './Header';
+import Player from './Player';
 
 class App extends React.Component {
 
@@ -23,6 +25,10 @@ class App extends React.Component {
     ]
   }
 
+  /**
+   * Takes a player ID and removes it from the players array, updating state 
+   * @param {number} id 
+   */
   handleRemovePlayer = (id) => {
     this.setState( prevState => ({
         players: prevState.players.filter( p => p.id !== id )
@@ -52,59 +58,6 @@ class App extends React.Component {
     );
   }
 
-}
-
-const Header = (props) => {
-  return (
-    <header>
-      <h1> { props.title }</h1>
-      <span className="stats">Players: {  props.totalPlayers }</span>
-    </header>
-  );
-}
-
-const Player = (props) => {
-  return (
-    <div className="player">
-      <span className="player-name">
-        <button className="remove-player" onClick={ () => props.removePlayer(props.id) }>✖</button>
-        {props.playerName}
-      </span>
-
-      <PlayerCounter score={props.playerScore}/>
-    </div>
-  );
-}
-
-class PlayerCounter extends React.Component {
-
-  state = {
-    score: 0
-  }
-
-  incrementScore = () => {
-    this.setState( prevState => ({
-      state: prevState.score += 1
-    }));    
-  }
-
-  decrementScore = () => {
-    this.setState( prevState => ({
-      state: prevState.score > 0 ? 
-        prevState.score -= 1 :
-        prevState.score
-    }));
-  }
-
-  render() {
-    return (
-      <div className="counter">
-        <button className="counter-action decrement" onClick={this.decrementScore}> - </button>
-        <span className="counter-score">{ this.state.score }</span>
-        <button className="counter-action increment" onClick={this.incrementScore}> + </button>
-      </div>
-    );
-  }
 }
 
 export default App;
