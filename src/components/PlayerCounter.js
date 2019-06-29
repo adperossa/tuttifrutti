@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 /**
  * Displays the score counter, adds or substracts to it 
  * if the corresponding buttons are interacted with
  */
 
-class PlayerCounter extends React.Component {
+class PlayerCounter extends Component {
 
   state = {
     score: 0
