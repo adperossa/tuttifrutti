@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Player from './Player';
+import AddPlayerForm from './AddPlayerForm';
 
 class App extends Component {
 
@@ -29,6 +30,8 @@ class App extends Component {
     ]
   }
 
+  lastPlayerId = 4;
+
   /**
    * Takes a player ID and removes it from the players array, updating state 
    * @param {number} id The player's ID
@@ -36,6 +39,23 @@ class App extends Component {
   handleRemovePlayer = (id) => {
     this.setState( prevState => ({
       players: prevState.players.filter( p => p.id !== id )
+    }));
+  }
+
+  /**
+   * Adds a new player to the players array in app state
+   * @param {string} name The text the user submitted in the <AddPlayerForm/> form
+   */
+  handleAddPlayer = (name) => {
+    this.setState( prevState => ({
+      players: [
+        ...prevState.players,
+        {
+          name,
+          score: 0,
+          id: this.lastPlayerId += 1
+        }
+      ]
     }));
   }
 
@@ -48,7 +68,7 @@ class App extends Component {
   updateScore = (index, delta) => {
     if (delta < 0 && this.state.players[index].score <= 0) return;
     this.setState( prevState => {
-
+      
       let newState = {
         players: prevState.players.map( p => {
           if (p !== prevState.players[index]) {
@@ -70,8 +90,8 @@ class App extends Component {
     return (
       <div className="scoreboard">
         <Header 
-          title="Scoreboard" 
-          totalPlayers={this.state.players.length} 
+          title="Tablero"
+          players={this.state.players}
         />
 
         {/* Player list */}
@@ -86,6 +106,8 @@ class App extends Component {
             index={index}
           />
         )}
+
+        <AddPlayerForm addPlayer={this.handleAddPlayer} />
       </div>
     );
   }
