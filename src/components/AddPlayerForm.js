@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
 
-class AddPlayerForm extends Component {
+const AddPlayerForm = ({ addPlayer }) => {
 
-  state = {
-    value: ''
-    };
+  const playerInput = React.createRef();
 
-  handleValueChange = (e) => {
-    this.setState({ value: e.target.value });
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addPlayer(this.state.value);
-    this.setState({value: ''});
+    //TODO: agregar validación de longitud de nombre para que no rompa
+    addPlayer(playerInput.current.value);
+    e.currentTarget.reset();
   }
 
-
-
-  render() {
-    return (
-    <form onSubmit={this.handleSubmit}>
+  return (
+    <form onSubmit={handleSubmit}>
       <input 
         type="text"
-        value={this.state.value}
-        onChange={this.handleValueChange}
+        ref={playerInput}
         placeholder="Ingrese un nuevo jugador"
       />
       <input 
@@ -33,7 +24,7 @@ class AddPlayerForm extends Component {
       />
     </form>
     );
-  }
+  
 }
 
 export default AddPlayerForm;
