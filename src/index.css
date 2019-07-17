@@ -16,10 +16,25 @@ header {
 }
 
 header h1 {
-  flex-grow: 1;
   font-size: 1.5em;
   letter-spacing: 2px;
   font-weight: normal;
+}
+
+header h2 {
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  font-weight: normal;
+}
+
+.subheader {
+  flex-grow: 1;
+}
+
+.letter {
+  border: 5px solid #5B45B9;
+  padding: 3px 5px;
+  border-radius: 5px;
 }
 
 /* FORMS */
@@ -175,7 +190,7 @@ svg {
     font-size: 2.15em;
   }
 
-  .stopwatch button {
+  button {
     margin: 8px 5px;
     background-color: #44338D;
     border-radius: 5px;
@@ -188,7 +203,7 @@ svg {
     text-transform: uppercase;
   }
 
-  .stopwatch button:hover,
+  button:hover,
   input[type=submit]:hover {
     background: #fff;
     color: #44338D;
