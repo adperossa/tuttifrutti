@@ -86,6 +86,19 @@ class App extends Component {
     });
   }
 
+  /**
+   * Searchs for the highest score among the players and sets a
+   * global state stating which score is that
+   */
+  checkHighScore = () => {
+    let highestScore = this.state.players.reduce( (acc, curr) => {
+      if (curr.score > acc) { return curr.score; } else { return acc; }
+    }, 0);
+
+    if (highestScore > 0) {return highestScore;} else {return null;}
+
+  }
+
   render() {
     return (
       <div className="scoreboard">
@@ -102,6 +115,8 @@ class App extends Component {
             key={player.id.toString()}
             removePlayer={this.handleRemovePlayer}
             updateScore={this.updateScore}
+            checkHighScore={this.checkHighScore}
+            isHighScore={this.checkHighScore() === player.score}
             id={player.id}
             index={index}
           />
