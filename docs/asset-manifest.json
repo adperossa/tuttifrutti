@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tuttifrutti/static/css/main.819fe886.chunk.css",
+    "main.js": "/tuttifrutti/static/js/main.902ccfb3.chunk.js",
+    "main.js.map": "/tuttifrutti/static/js/main.902ccfb3.chunk.js.map",
+    "runtime~main.js": "/tuttifrutti/static/js/runtime~main.25154991.js",
+    "runtime~main.js.map": "/tuttifrutti/static/js/runtime~main.25154991.js.map",
+    "static/js/2.b6fe4141.chunk.js": "/tuttifrutti/static/js/2.b6fe4141.chunk.js",
+    "static/js/2.b6fe4141.chunk.js.map": "/tuttifrutti/static/js/2.b6fe4141.chunk.js.map",
+    "index.html": "/tuttifrutti/index.html",
+    "precache-manifest.f169e275883e73805cfab522875ea3fb.js": "/tuttifrutti/precache-manifest.f169e275883e73805cfab522875ea3fb.js",
+    "service-worker.js": "/tuttifrutti/service-worker.js",
+    "static/css/main.819fe886.chunk.css.map": "/tuttifrutti/static/css/main.819fe886.chunk.css.map"
+  }
+}
