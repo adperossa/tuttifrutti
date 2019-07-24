@@ -1,24 +1,31 @@
 import React from 'react';
+import { Consumer } from './Context';
 
-const Stats = (props) => {
-
-  const totalPlayers = props.players.length; 
-  const totalPoints = props.players.reduce( (acc, player) => { return acc + player.score }, 0)
-
-
+const Stats = () => {
   return (
-    <table className="stats">
-      <tbody>
-        <tr>
-          <td>Jugadores:</td>
-          <td>{totalPlayers}</td>
-        </tr>
-        <tr>
-          <td>Puntos Totales:</td>
-          <td>{totalPoints}</td>
-        </tr>
-        </tbody>
-    </table>
+    <Consumer>
+      { context => {
+
+        const totalPlayers = context.length; 
+        const totalPoints = context.reduce( (acc, player) => { return acc + player.score }, 0)
+        
+        return (
+          <table className="stats">
+          <tbody>
+            <tr>
+              <td>Jugadores:</td>
+              <td>{totalPlayers}</td>
+            </tr>
+            <tr>
+              <td>Puntos Totales:</td>
+              <td>{totalPoints}</td>
+            </tr>
+            </tbody>
+          </table>
+        );
+
+      }}
+    </Consumer>
   );
 
 }

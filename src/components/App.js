@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Provider } from './Context';
 import Header from './Header';
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
+
 
 class App extends Component {
 
@@ -101,29 +103,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className="scoreboard">
-        <Header 
-          title="Tablero"
-          players={this.state.players}
-        />
-
-        {/* Player list */}
-        { this.state.players.map( (player, index) => 
-          <Player 
-            playerName={player.name}
-            playerScore={player.score}
-            key={player.id.toString()}
-            removePlayer={this.handleRemovePlayer}
-            updateScore={this.updateScore}
-            checkHighScore={this.checkHighScore}
-            isHighScore={this.checkHighScore() === player.score}
-            id={player.id}
-            index={index}
+      <Provider value={this.state.players}>
+        <div className="scoreboard">
+          <Header 
+            title="Tablero"
           />
-        )}
 
-        <AddPlayerForm addPlayer={this.handleAddPlayer} />
-      </div>
+          {/* Player list */}
+          { this.state.players.map( (player, index) => 
+            <Player 
+              playerName={player.name}
+              playerScore={player.score}
+              key={player.id.toString()}
+              removePlayer={this.handleRemovePlayer}
+              updateScore={this.updateScore}
+              checkHighScore={this.checkHighScore}
+              isHighScore={this.checkHighScore() === player.score}
+              id={player.id}
+              index={index}
+            />
+          )}
+
+          <AddPlayerForm addPlayer={this.handleAddPlayer} />
+        </div>
+      </Provider>
     );
   }
 
