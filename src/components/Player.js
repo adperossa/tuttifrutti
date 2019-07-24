@@ -4,7 +4,7 @@ import PlayerCounter from './PlayerCounter';
 class Player extends PureComponent {
 
   render() {
-    const {playerName, playerScore, removePlayer, updateScore, isHighScore, id, index} = this.props;
+    const {playerName, playerScore, removePlayer, isHighScore, id, index} = this.props;
     return (
       <div className="player">
         <span className="player-name">
@@ -18,7 +18,6 @@ class Player extends PureComponent {
   
         <PlayerCounter 
           score={playerScore}
-          updateScore={updateScore}
           index={index}
         />
       </div>

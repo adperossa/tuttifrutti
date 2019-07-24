@@ -103,7 +103,12 @@ class App extends Component {
 
   render() {
     return (
-      <Provider value={this.state.players}>
+      <Provider value={{
+        players: this.state.players,
+        actions: {
+          updateScore: this.updateScore
+        }
+      }}>
         <div className="scoreboard">
           <Header 
             title="Tablero"
@@ -116,7 +121,6 @@ class App extends Component {
               playerScore={player.score}
               key={player.id.toString()}
               removePlayer={this.handleRemovePlayer}
-              updateScore={this.updateScore}
               checkHighScore={this.checkHighScore}
               isHighScore={this.checkHighScore() === player.score}
               id={player.id}
