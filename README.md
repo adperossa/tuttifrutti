@@ -12,7 +12,7 @@ Este proyecto era una de las sugerencias del curso de React de TeamTreehouse. Ba
 
 Tiene la funcionalidad de agregar y quitar participantes, marcar los ganadores dinámicamente y mantener un contador del tiempo para cada turno.
 
-Las mejoras que se me ocurrieron y le introduje fue el selector al azar de una letra para hacerlo aplicable a un juego de Tutti Frutti, y el uso de la API Context para evitar el prop drilling. Se uso **React 12.4** por lo que no utilizo Hooks sino componentes de clase.
+Las mejoras que se me ocurrieron y le introduje fue el selector al azar de una letra para hacerlo aplicable a un juego de Tutti Frutti, y el uso de la API Context para evitar el prop drilling. Se uso **React 16.4**, no utilizo Hooks sino componentes de clase.
 
 El objetivo era utilizar buenas prácticas poniendo en práctica conceptos como composición de clases, el flujo unidireccional de los datos característico de React, la abstracción del state a componentes superiores en la jerarquía y el uso de métodos de ciclo de vida. Según el profesor superó las expectativas :)
 
