@@ -6,28 +6,7 @@ import AddPlayerForm from './AddPlayerForm';
 class App extends Component {
 
   state = {
-    players: [
-      {
-        name: "Axel",
-        score: 0,
-        id: 1
-      },
-      {
-        name: "Carlos",
-        score: 0,
-        id: 2
-      },
-      {
-        name: "Nelson",
-        score: 0,
-        id: 3
-      },
-      {
-        name: "Salem",
-        score: 0,
-        id: 4
-      }
-    ]
+    players: someState
   }
 
   lastPlayerId = 4;
