@@ -29,35 +29,36 @@ const initialState = {
 export default function Player(state = initialState, action) {
   switch (action.type) {
     case PlayerActionTypes.ADD_PLAYER:
+      const newId = state.lastPlayerId + 1;
+      const addPlayerList = [...state.players, {
+        name: action.name,
+        score: 0,
+        id: newId
+      }];
       return {
-        players: [
-          ...state.players,
-          {
-            name: action.name,
-            score: 0,
-            id: state.lastPlayerId + 1
-          }
-        ],
-        lastPlayerId: state.lastPlayerId + 1
+        ...state,
+        players: addPlayerList,
+        lastPlayerId: newId
       };
 
     case PlayerActionTypes.REMOVE_PLAYER:
       return {
+        ...state,
         players: state.players.filter(player => player.id !== action.id),
-        lastPlayerId: state.lastPlayerId
       };
 
     case PlayerActionTypes.UPDATE_PLAYER_SCORE:
+      const newPlayerList = state.players.map(player => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            score: player.score + action.score
+          }
+        } else return player;
+      });
       return {
-        players: state.players.map(player => {
-          if (player.id === action.id) {
-            return {
-              ...player,
-              score: player.score + action.score
-            }
-          } else return player;
-        }),
-        lastPlayerId: state.lastPlayerId
+        ...state,
+        players: newPlayerList
       };
 
     default:
