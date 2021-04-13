@@ -5,13 +5,13 @@ import React from 'react';
  * if the corresponding buttons are interacted with
  */
 
-const PlayerCounter = ({ score, updateScore, index }) => {
+const PlayerCounter = ({ score, updateScore, id }) => {
 
   return (
     <div className="counter">
-      <button className="counter-action decrement" onClick={() => updateScore(index, -1)}> - </button>
+      <button className="counter-action decrement" onClick={() => score > 0 && updateScore(id, -1)}> - </button>
       <span className="counter-score">{ score }</span>
-      <button className="counter-action increment" onClick={() => updateScore(index, 1)}> + </button>
+      <button className="counter-action increment" onClick={() => updateScore(id, 1)}> + </button>
     </div>
   );
   

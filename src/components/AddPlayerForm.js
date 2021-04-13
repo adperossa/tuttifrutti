@@ -6,25 +6,26 @@ const AddPlayerForm = ({ addPlayer }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //TODO: agregar validación de longitud de nombre para que no rompa
     addPlayer(playerInput.current.value);
     e.currentTarget.reset();
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
+      <input
         type="text"
+        minLength={1}
+        required
         ref={playerInput}
         placeholder="Ingrese un nuevo jugador"
       />
-      <input 
+      <input
         type="submit"
         value="Agregar"
       />
     </form>
-    );
-  
+  );
+
 }
 
 export default AddPlayerForm;

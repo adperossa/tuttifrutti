@@ -1,99 +1,75 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as PlayerActionCreators from '../redux/actions/player';
 import Header from './Header';
 import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
 
 class App extends Component {
 
-  state = {
-    players: someState
-  }
+  
+  // /**
+  //  * Changes the score of the player based on user input
+  //  * @param {number} index The player's ID
+  //  * @param {number} delta The amount to increase or decrease the score by
+  //  * 
+  //  */
+  // updateScore = (index, delta) => {
+  //   if (delta < 0 && this.state.players[index].score <= 0) return;
+  //   this.setState(prevState => {
 
-  lastPlayerId = 4;
+  //     let newState = {
+  //       players: prevState.players.map(p => {
+  //         if (p !== prevState.players[index]) {
+  //           return { ...p }
+  //         } else {
+  //           return {
+  //             ...p,
+  //             score: p.score += delta
+  //           }
+  //         }
+  //       })
+  //     }
 
-  /**
-   * Takes a player ID and removes it from the players array, updating state 
-   * @param {number} id The player's ID
-   */
-  handleRemovePlayer = (id) => {
-    this.setState( prevState => ({
-      players: prevState.players.filter( p => p.id !== id )
-    }));
-  }
-
-  /**
-   * Adds a new player to the players array in app state
-   * @param {string} name The text the user submitted in the <AddPlayerForm/> form
-   */
-  handleAddPlayer = (name) => {
-    this.setState( prevState => ({
-      players: [
-        ...prevState.players,
-        {
-          name,
-          score: 0,
-          id: this.lastPlayerId += 1
-        }
-      ]
-    }));
-  }
-
-  /**
-   * Changes the score of the player based on user input
-   * @param {number} index The player's ID
-   * @param {number} delta The amount to increase or decrease the score by
-   * 
-   */
-  updateScore = (index, delta) => {
-    if (delta < 0 && this.state.players[index].score <= 0) return;
-    this.setState( prevState => {
-      
-      let newState = {
-        players: prevState.players.map( p => {
-          if (p !== prevState.players[index]) {
-            return { ...p }
-          } else {
-            return {
-              ...p,
-              score: p.score += delta
-            }
-          }
-        })
-      }
-
-      return newState;
-    });
-  }
+  //     return newState;
+  //   });
+  // }
 
   /**
    * Searchs for the highest score among the players and sets a
    * global state stating which score is that
    */
   checkHighScore = () => {
-    let highestScore = this.state.players.reduce( (acc, curr) => {
+    let highestScore = this.props.players.reduce((acc, curr) => {
       if (curr.score > acc) { return curr.score; } else { return acc; }
     }, 0);
 
-    if (highestScore > 0) {return highestScore;} else {return null;}
-
+    if (highestScore > 0) { return highestScore; } else { return null; }
   }
 
   render() {
+    const { dispatch, players } = this.props;
+    const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer, dispatch);
+    const removePlayer = bindActionCreators(PlayerActionCreators.removePlayer, dispatch);
+    const updatePlayerScore = bindActionCreators(PlayerActionCreators.updatePlayerScore, dispatch);
+
     return (
       <div className="scoreboard">
-        <Header 
+        <Header
           title="Tablero"
-          players={this.state.players}
+          players={players}
         />
 
         {/* Player list */}
-        { this.state.players.map( (player, index) => 
-          <Player 
+        {players.map((player, index) =>
+          <Player
             playerName={player.name}
             playerScore={player.score}
             key={player.id.toString()}
-            removePlayer={this.handleRemovePlayer}
-            updateScore={this.updateScore}
+            removePlayer={removePlayer}
+            updateScore={updatePlayerScore}
             checkHighScore={this.checkHighScore}
             isHighScore={this.checkHighScore() === player.score}
             id={player.id}
@@ -101,11 +77,17 @@ class App extends Component {
           />
         )}
 
-        <AddPlayerForm addPlayer={this.handleAddPlayer} />
+        <AddPlayerForm addPlayer={addPlayer} />
       </div>
     );
   }
 
 }
 
-export default App;
+const mapStateToProps = state => (
+  {
+    players: state.players
+  }
+);
+
+export default connect(mapStateToProps)(App);

@@ -21,7 +21,7 @@ class Stopwatch extends Component {
   handleStopwatch = () => {
 
     if (!this.state.isInitialized) { 
-      let intervalID = setInterval( () => this.tick(), 100);
+      this.intervalID = setInterval( () => this.tick(), 100);
     }
 
     this.setState( prevState => ({

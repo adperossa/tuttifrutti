@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Letters from './Letters';
 import Stats from './Stats';
 import Stopwatch from './Stopwatch';
@@ -6,11 +6,11 @@ import Stopwatch from './Stopwatch';
 /**
  * Displays the title and total players
  */
-const Header = () => {
+const Header = (props) => {
   
   return (
     <header>
-      <Stats />
+      <Stats players={props.players} />
       <div className="subheader">
         <h1>Tablero</h1>
         <Letters />

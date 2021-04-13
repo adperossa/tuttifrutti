@@ -16,7 +16,7 @@ export const removePlayer = id => {
 
 export const updatePlayerScore = (id, score) => {
   return {
-    type: PlayerActionTypes.REMOVE_PLAYER,
+    type: PlayerActionTypes.UPDATE_PLAYER_SCORE,
     id,
     score
   }
